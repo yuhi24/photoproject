@@ -1,0 +1,280 @@
+
+<!-- 静的ファイルのURLを生成するstaticタグをロードする-->
+
+{% load static %}
+
+<!doctype html>
+
+<!-- 言語指定をenからjaに変更-->
+
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+
+    <meta name="author"
+
+          content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+
+    <meta name="generator" content="Hugo 0.84.0">
+
+    <!-- ヘッダー情報のタイトルを個別に設定できるようにする-->
+
+    <title>{% block title %}{% endblock %}</title>
+
+ 
+
+    <!-- Bootstrap core CSS -->
+
+    <!-- Bootstrap core CSSを読み込むコードをBootstrapからコピー-->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+
+          rel="stylesheet"
+
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+
+          crossorigin="anonymous">
+
+ 
+
+    <style>
+
+      .bd-placeholder-img {
+
+        font-size: 1.125rem;
+
+        text-anchor: middle;
+
+        -webkit-user-select: none;
+
+        -moz-user-select: none;
+
+        user-select: none;
+
+      }
+
+ 
+
+      @media (min-width: 768px) {
+
+        .bd-placeholder-img-lg {
+
+          font-size: 3.5rem;
+
+        }
+
+      }
+
+    </style>    
+
+  </head>
+
+ 
+
+  <body>
+
+    <!-- ページのヘッダー-->
+
+    <header class="text-muted py-5" style="background-color: white" !important>
+
+      <!-- ナビゲーションバーのヘッダー-->
+
+      <div class="collapse bg-light" id="navbarHeader" style="background-color: #B0C4DE">
+
+        <div class="container" style="background-color: #B0C4DE" !important>
+
+          <div class="row" >
+
+            <div class="col-sm-8 col-md-7 py-4">
+
+              <!-- ヘッダーのタイトルと本文-->
+
+              <h4 class="text-white">ニュースで世界を知ろう!</h4>
+
+              <p class="text-white" >
+
+                誰でも参加できるニュースサイトです。
+
+              </p>
+
+            </div>
+            <div class="col-sm-4 offset-md-1 py-4" style="background-color: #B0C4DE">
+
+              <h4 class="text-white">Contact</h4>
+
+              <ul class="list-unstyled">
+
+                <!-- ナビゲーションメニュー-->
+
+                {% if user.is_authenticated %}
+
+                <!-- ログイン中のメニュー-->
+
+                <li><a href="{% url 'photo:mypage' %}"
+
+                       class="text-white">マイページ</a></li>
+
+                <li><a href="{% url 'accounts:logout' %}"
+
+                       class="text-white">ログアウト</a></li>
+
+                <!--<li><a href="{% url 'password_reset' %}"
+
+                       class="text-white">パスワードのリセット</a></li>
+                -->
+                <li><a href="{% url 'photo:contact' %}"
+
+                       class="text-white">お問い合わせ</a></li>
+
+                {% else %}
+
+                <!-- ログイン状態ではない場合のメニュー-->
+
+                <li><a href="{% url 'accounts:signup' %}"
+
+                       class="text-white">サインアップ</a></li>
+
+                <li><a href="{% url 'accounts:login' %}"
+
+                       class="text-white">ログイン</a></li>
+
+                <li><a href="mailto:yuhip05@gmail.com"
+
+                       class="text-white">お問い合わせ</a></li>
+
+                {% endif %}
+
+              </ul>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ナビゲーションバー-->
+
+      <div class="navbar navbar-light bg-light shadow-sm" style="background-color: #B0C4DE">
+
+        <div class="container">
+
+          <!-- トップページへのリンク-->
+
+          <a href="{% url 'photo:index' %}"
+
+             class="navbar-brand d-flex align-items-center">
+
+            <svg xmlns="http://www.w3.org/2000/svg"
+
+                 width="20" height="20" fill="none"
+
+                 stroke="currentColor"
+
+                 stroke-linecap="round"
+
+                 stroke-linejoin="round"
+
+                 stroke-width="2"
+
+                 aria-hidden="true"
+
+                 class="me-2"
+
+                 viewBox="0 0 24 24">
+
+                 <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+
+                 <circle cx="12" cy="13" r="4"/></svg>
+
+            <!-- リンクテキスト-->
+
+            <strong>NEWS SITE SYSTEM</strong>
+
+          </a>
+
+          <!-- トグルボタン-->
+
+          <button class="navbar-toggler"
+
+                  type="button"
+
+                  data-bs-toggle="collapse"
+
+                  data-bs-target="#navbarHeader"
+
+                  aria-controls="navbarHeader"
+
+                  aria-expanded="false"
+
+                  aria-label="Toggle navigation">
+
+            <span class="navbar-toggler-icon"></span>
+
+          </button>
+
+        </div>
+
+      </div>
+    </header>
+
+   
+
+    <!-- メインコンテンツ-->
+
+    <main>
+
+      <!-- <main>タグの要素をすべて削除して以下に書き換え-->
+
+      <!-- メインコンテンツの本体部分は各ページのテンプレートで埋め込む-->
+
+      {% block contents %}{% endblock %}
+
+    </main>
+
+   
+
+    <!-- フッター -->
+
+    <footer class="text-muted py-5" style="background-color: #B0C4DE">
+
+      <div class="container" >
+
+        <p class="float-end mb-1">
+
+          <a href="{% url 'photo:index' %}" style="color: white">Back to top</a>
+
+        </p>
+
+        <!-- フッターのテキストを任意のものに書き換え-->
+
+        <p class="mb-1" style="color: black">
+
+          We look forward to your submission!</p>
+
+      </div>
+
+    </footer>
+
+   
+
+    <!-- BootstrapからJavaScriptを読み込むコードをコピーして貼り付け-->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+
+            crossorigin="anonymous"></script>      
+
+  </body>
+
+</html>
+
+ 

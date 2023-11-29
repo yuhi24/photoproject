@@ -1,0 +1,121 @@
+    <body>
+        <!-- Navigation-->
+        {% extends 'base.html' %}
+        {% load static %}
+        {% block title %}NEWS SITE SYSTEM{% endblock %}
+
+        
+        <!-- Page Header-->
+        {% block header %}
+        <header class="masthead"
+                style="background-image: url({% static 'assets/img/contact-bg.jpg' %})">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="page-heading">
+                            <h1>Contact Me</h1>
+                            <span class="subheading">Have questions? I have answers.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        {% endblock %}
+
+        <!-- Main Content-->
+        {% block contents %}
+        <main class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <strong>連絡を取りたいですか?
+                                以下のフォームに記入してメッセージを送信してください。
+                                できるだけ早くご連絡します。</strong>
+
+                        {% if messages %}
+                        <ul class="list-unstyled" style="list-style: none;">
+                        {% for message in messages %}
+                        <li {%if message.tags %} class="{{ message.tags }}" {% endif %}>
+                            {{ message }}
+                        </li>
+                        {% endfor %}
+                        </ul>
+                        {% endif %}
+
+                        <div class="my-5">
+                            <form method="post" >
+                                {% csrf_token %}
+                                {% for field in form %}
+                                <div class="form-floating">
+                                <div class="form-group floating-label-form-group controls">
+                                    {{ field.label_tag}}
+                                    {{ field }}
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+
+                            <br>
+                            <button type="submit"
+                                    class="btn btn-primary"
+                                    id="sendMessageButton">Send</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+        </main>
+        {% endblock %}
+
+                            <!--<form id="contactForm" data-sb-form-api-token="API_TOKEN">
+                                <div class="form-floating">
+                                    
+                                    <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                                </div>
+                                <div class="form-floating">
+                                    <input class="form-control" id="email" type="email" placeholder="Enter your email..." data-sb-validations="required,email" />
+                                    <label for="email">Email address</label>
+                                    <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
+                                    <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+                                </div>
+                                <div class="form-floating">
+                                    <input class="form-control" id="phone" type="tel" placeholder="Enter your phone number..." data-sb-validations="required" />
+                                    <label for="phone">Phone Number</label>
+                                    <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
+                                </div>
+                                <div class="form-floating">
+                                    <textarea class="form-control" id="message" placeholder="Enter your message here..." style="height: 12rem" data-sb-validations="required"></textarea>
+                                    <label for="message">Message</label>
+                                    <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
+                                </div>
+                                <br />-->
+                                <!--Submit success message-->
+                                <!---->
+                                <!-- This is what your users will see when the form-->
+                                <!-- has successfully submitted-->
+                                <!--<div class="d-none" id="submitSuccessMessage">
+                                    <div class="text-center mb-3">
+                                        <div class="fw-bolder">Form submission successful!</div>
+                                        To activate this form, sign up at
+                                        <br />
+                                        <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                                    </div>
+                                </div>-->
+                                <!-- Submit error message-->
+                                <!---->
+                                <!-- This is what your users will see when there is-->
+                                <!-- an error submitting the form-->
+                                <!--<div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>-->
+                                <!-- Submit Button-->
+                                <!--<button class="btn btn-primary text-uppercase disabled" id="submitButton" type="submit">Send</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>-->
+        <!-- Footer-->
+        
